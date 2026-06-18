@@ -1,0 +1,20 @@
+{% extends 'perpustakaan/base.html' %}
+
+{% block title %}Hapus User{% endblock %}
+
+{% block content %}
+<div class="max-w-md bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm mx-auto my-12 text-center">
+  <div class="w-14 h-14 bg-rose-50 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-4">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7a4 4 0 11-8 0 4 4 0 018 0zM9 14a6 6 0 00-6 6v1h12v-1a6 6 0 00-6-6zM21 12h-6"/></svg>
+  </div>
+  
+  <h2 class="text-lg font-bold text-slate-800">Hapus Keanggotaan?</h2>
+  <p class="text-xs text-slate-400 mt-1 px-4">Apakah Anda yakin mau menghapus hak akses sirkulasi untuk siswa <strong class="text-slate-700">{{ object.nama }}</strong>?</p>
+
+  <form method="POST" class="mt-6 flex justify-center gap-3">
+    {% csrf_token %}
+    <a href="{% url 'siswa_list' %}" class="px-4 py-2 border border-slate-200 text-slate-500 rounded-xl text-xs font-medium hover:bg-slate-50 transition">Batal</a>
+    <button type="submit" class="px-4 py-2 bg-rose-600 text-white rounded-xl text-xs font-medium hover:bg-rose-700 transition">Hapus Permanen</button>
+  </form>
+</div>
+{% endblock %}

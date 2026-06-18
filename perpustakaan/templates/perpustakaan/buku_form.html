@@ -1,0 +1,61 @@
+{% extends 'perpustakaan/base.html' %}
+
+{% block title %}{% if form.instance.pk %}Edit Buku{% else %}Tambah Buku{% endif %}{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm">
+  <div class="pb-6 border-b border-slate-100 mb-6">
+    <h2 class="text-xl font-bold text-slate-800">{% if form.instance.pk %}Ubah Data Buku{% else %}Tambah Buku Baru{% endif %}</h2>
+    <p class="text-xs text-slate-400 mt-1">Silakan isi formulir di bawah ini dengan informasi buku secara lengkap.</p>
+  </div>
+
+  <form method="POST" class="space-y-4 text-sm">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      <div class="p-3 bg-red-50 text-red-600 rounded-lg text-xs">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Judul Buku</label>
+        <input type="text" name="judul" value="{{ form.judul.value|default:'' }}" class="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-slate-700" required>
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Pengarang</label>
+        <input type="text" name="pengarang" value="{{ form.pengarang.value|default:'' }}" class="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-slate-700" required>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Kategori</label>
+        <input type="text" name="kategori" value="{{ form.kategori.value|default:'' }}" class="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-slate-700">
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Penerbit</label>
+        <input type="text" name="penerbit" value="{{ form.penerbit.value|default:'' }}" class="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-slate-700">
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Tahun Terbit</label>
+        <input type="number" name="tahun" value="{{ form.tahun.value|default:'' }}" class="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-slate-700">
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Kode Lokasi Rak</label>
+        <input type="text" name="rak" value="{{ form.rak.value|default:'' }}" class="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-slate-700" placeholder="Contoh: Rak A-01">
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Jumlah Unit (Stok)</label>
+        <input type="number" name="stok" value="{{ form.stok.value|default:'' }}" class="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-slate-700" required>
+      </div>
+    </div>
+
+    <div class="pt-4 flex justify-end gap-3">
+      <a href="{% url 'buku_list' %}" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-500 font-medium text-xs hover:bg-slate-50 transition">Batal</a>
+      <button type="submit" class="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-xs hover:bg-blue-700 transition shadow-sm">Simpan Data</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
