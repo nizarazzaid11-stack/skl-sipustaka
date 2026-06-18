@@ -31,7 +31,7 @@
 
   <div class="pt-6 mt-6 border-t border-slate-100 flex justify-end gap-2">
     <a href="{% url 'siswa_list' %}" class="px-4 py-2 bg-slate-100 text-slate-600 rounded-xl text-xs font-medium hover:bg-slate-200 transition">Kembali</a>
-    <a href="{% url 'siswa_ubah' siswa.id %}" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-medium hover:bg-blue-700 transition">Ubah Profil</a>
+    <a href="{% url 'siswa_edit' siswa.id %}" class="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-medium hover:bg-blue-700 transition">Ubah Profil</a>
   </div>
 </div>
 {% endblock %}
